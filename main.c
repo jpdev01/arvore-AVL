@@ -1,57 +1,59 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-
-typedef struct {
-    struct No *pai;
-    struct No *esquerda;
-    struct No *direita;
-    int valor;
-} No;
+#include "No.c";
 
 
 int altura(No *no) {
-    int esquerda = 0, direita = 0;
+    int alturaEsquerda = 0, alturaDireita = 0;
     if (no->esquerda != NULL) {
-        printf("Verificando esquerda\n");
-        esquerda = altura(no->esquerda) + 1;
+        alturaEsquerda = altura(no->esquerda) + 1;
     }
     if (no->direita != NULL) {
-        direita = altura(no->direita) + 1;
+        alturaDireita = altura(no->direita) + 1;
     }
 
-    return esquerda > direita ? esquerda : direita;
+    if (alturaEsquerda == alturaDireita) return 0;
+    return alturaEsquerda > alturaDireita ? alturaEsquerda : alturaDireita;
 }
 
-int main() {
-    No *no = malloc(sizeof(No) * 1);
-    no->valor = 20;
+No* buildNo() {
+    No *no = malloc(sizeof(No) + 1);
+    no->chave = 4;
 
     No* noesquerd = malloc(sizeof(No) +1);
-    noesquerd->valor=10;
+    noesquerd->chave=2;
 
-    No* noesquerda = malloc(sizeof(No) +1);
-    noesquerda->valor=30;
+    No* noDireita = malloc(sizeof(No) +1);
+    noDireita->chave=30;
 
     no->esquerda = noesquerd;
-    noesquerd->esquerda=noesquerda;
+    no->direita=noDireita;
 
-    printf("%i", altura(no));
-    return 0;
+    No* maisUmNoEsquerda = malloc(sizeof(No) +1);
+    maisUmNoEsquerda->chave = 5;
+    noesquerd->esquerda=maisUmNoEsquerda;
+
+    return no;
 }
 
+void main() {
+    No *no = buildNo();
+    printf("%i", altura(no));
+}
+
+
 int fb(No* no) {
-    int esquerda = 0,direita = 0;
+    int alturaEsquerda = 0,alturaDireita = 0;
 
     if (no->esquerda != NULL) {
-        esquerda = altura(no->esquerda) + 1;
+        alturaEsquerda = altura(no->esquerda) + 1;
     }
     if (no->direita != NULL) {
-        direita = altura(no->direita) + 1;
+        alturaDireita = altura(no->direita) + 1;
     }
 
-    return esquerda - direita;
+    return alturaEsquerda - alturaDireita;
 }
 
 No* rse(No* no) {
