@@ -1,14 +1,13 @@
-int altura(No *no) {
-    int alturaEsquerda = 0, alturaDireita = 0;
+int altura(No* no){
+    int esquerda = 0,direita = 0;
     if (no->esquerda != NULL) {
-        alturaEsquerda = altura(no->esquerda) + 1;
+        esquerda = altura(no->esquerda) + 1;
     }
     if (no->direita != NULL) {
-        alturaDireita = altura(no->direita) + 1;
+        direita = altura(no->direita) + 1;
     }
 
-    if (alturaEsquerda == alturaDireita) return 0;
-    return alturaEsquerda > alturaDireita ? alturaEsquerda : alturaDireita;
+    return esquerda > direita ? esquerda : direita;
 }
 
 int fb(No* no) {
