@@ -35,5 +35,14 @@ Arvore* build() {
 
 void main() {
     Arvore* arvore = build();
-    printf("%i", altura(arvore->raiz));
+
+    printf("---Q1----\n");
+    printf("Fator de balanceamento: %i", fb(arvore->raiz));
+
+    printf("\n---Q2----\n");
+    printf("Remover nó 6:\n");
+    removeNo(arvore, arvore->raiz->direita->esquerda);
+    printf("Fator de balanceamento removendo o nó 6: %i", fb(arvore->raiz));
+    removeNo(arvore, arvore->raiz->direita);
+    printf("\nFator de balanceamento removendo o nó 8: %i", fb(arvore->raiz));
 }
