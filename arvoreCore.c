@@ -23,21 +23,6 @@ int vazia(Arvore* arvore) {
     return arvore->raiz == NULL;
 }
 
-No* adicionar(Arvore* arvore, No* pai, int valor) {
-    No *no = malloc(sizeof(No));
-
-    no->pai = pai;
-    no->esquerda = NULL;
-    no->direita = NULL;
-    no->valor = valor;
-
-    if (pai == NULL) {
-        arvore->raiz = no;
-    }
-
-    return no;
-}
-
 void removeNo(Arvore* arvore, No* no) {
     if (no->esquerda != NULL)
         removeNo(arvore, no->esquerda);
